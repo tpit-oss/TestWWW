@@ -8,6 +8,7 @@ require_once ZALAMO_MARKETPLACE_PATH . 'includes/class-zalamo-marketplace-post-t
 require_once ZALAMO_MARKETPLACE_PATH . 'includes/class-zalamo-marketplace-vendors.php';
 require_once ZALAMO_MARKETPLACE_PATH . 'includes/class-zalamo-marketplace-shortcodes.php';
 require_once ZALAMO_MARKETPLACE_PATH . 'includes/class-zalamo-marketplace-admin.php';
+require_once ZALAMO_MARKETPLACE_PATH . 'includes/class-zalamo-marketplace-sessions.php';
 
 class Zalamo_Marketplace
 {
@@ -17,6 +18,7 @@ class Zalamo_Marketplace
         $vendors = new Zalamo_Marketplace_Vendors();
         $shortcodes = new Zalamo_Marketplace_Shortcodes();
         $admin = new Zalamo_Marketplace_Admin();
+        $sessions = new Zalamo_Marketplace_Sessions();
 
         add_action('init', [$post_types, 'register']);
         add_action('init', [$vendors, 'register_vendor_role']);
@@ -29,5 +31,10 @@ class Zalamo_Marketplace
         add_shortcode('zalamo_vendor_dashboard', [$shortcodes, 'vendor_dashboard']);
 
         add_action('admin_menu', [$admin, 'register_menu_pages']);
+
+        add_action('init', [$sessions, 'register_post_type']);
+        add_action('add_meta_boxes', [$sessions, 'register_meta_boxes']);
+        add_action('save_post_zalamo_session', [$sessions, 'save_session_meta']);
+        add_action('admin_enqueue_scripts', [$sessions, 'enqueue_admin_assets']);
     }
 }

@@ -10,7 +10,14 @@ To starter plugin do WordPressa dla marketplace'u modowego inspirowanego serwisa
 - Pola profilu sprzedawcy: nazwa i opis sklepu.
 - Shortcode storefrontu: `[zalamo_storefront per_page="12" brand="nike"]`
 - Shortcode panelu sprzedawcy: `[zalamo_vendor_dashboard]`
-- Zakładki w `wp-admin`: **Panel fotografa** i **Panel klienta** w menu `Zalamo Marketplace`.
+- Zakładki w `wp-admin`:
+  - **Panel fotografa** (uprawnienie: `manage_options` / admin)
+  - **Panel klienta** (uprawnienie: `read`)
+- Podstawowy system sesji zdjęciowych:
+  - CPT `zalamo_session`
+  - przypisanie klienta do sesji
+  - data sesji
+  - dodawanie zdjęć przez bibliotekę mediów (`zalamo_gallery_ids`)
 
 ## Instalacja
 
